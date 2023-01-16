@@ -1,0 +1,28 @@
+#banner {
+    width: 100%;
+    margin: 0 auto;
+    height: 550px;
+}
+
+#editBanner{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: black;
+    color: white;
+    position: sticky;
+    top: 61.45%;
+}
+
+#editBanner > button{
+    height: 50%;
+}
+
+#editBanner > label{
+    border: 1px solid white;
+}
+
+#editBanner > p{
+   text-align: center;
+}

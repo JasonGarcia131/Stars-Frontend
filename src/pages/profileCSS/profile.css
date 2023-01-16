@@ -1,0 +1,38 @@
+/* Mobile View */
+
+#profileWrapper {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.profilePictureWrapper {
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.profilePicture {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+article {
+    text-align: left;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    margin-top: 30px;
+    background-position: 50%;
+    background-size: cover;
+    color: white;
+}
+
+article>p {
+    text-align: center;
+}
+

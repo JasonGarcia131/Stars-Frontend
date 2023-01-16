@@ -1,0 +1,79 @@
+#postProfilePicture {
+    width: 20%;
+    height: 50px;
+    margin-left: 5px;
+}
+
+#postUsername {
+    width: 40%;
+    margin-left: 5px;
+}
+
+#postDate {
+    width: 40%;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.postUserInfoFlex {
+    width: 100%;
+    margin: 15px 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+.postWrapperLight {
+    background-image: url("https://th.bing.com/th/id/R.60336657091d86bf4755f7c888e614ed?rik=TCWKLLCDubfk5g&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f08%2fAndromeda-Galaxy-Milky-Way.jpg&ehk=plGXCabGQ7dAx6YArvO0TQgNmO5%2fwPr1PYQ3sXk9KTQ%3d&risl=1&pid=ImgRaw&r=0");
+    background-position: 50%;
+    color: black;
+
+}
+
+.postWrapperShadow {
+    color: white;
+    background-image: url("https://images.unsplash.com/photo-1616712134411-6b6ae89bc3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80");
+
+}
+
+.postWrapper>h2 {
+    margin-bottom: 15px;
+}
+
+.lightPostCard {
+    color: black;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.lightPostCard>p {
+    font-weight: 800;
+}
+
+.shadowPostCard {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.deleteButtonWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.unhide {
+    visibility: visible;
+}
+
+@media screen and (min-width: 500px) {
+
+    #postProfilePicture {
+        height: 80%;
+        max-height: 100px;
+    }
+}

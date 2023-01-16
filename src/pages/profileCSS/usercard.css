@@ -1,0 +1,47 @@
+#userCardWrapper {
+    text-align: center;
+    height: 500px;
+    margin: 0 auto;
+    padding: 50px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: white;
+}
+
+#userCardProfilePictureWrapper {
+    width: 50%;
+    min-width: 50px;
+    max-width: 200px;
+    height: 145px;
+}
+
+#userNameWrapper {
+    width: 50%;
+    text-align: center;
+    margin: 5% auto;
+}
+
+#editBioWrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.inputFile {
+    border: 1px solid black;
+    padding: 2px;
+}
+
+.inputFile:active {
+    background-color: rgb(191, 160, 219);
+}
+
+@media screen and (min-width: 800px) {
+    #userCardWrapper {
+        height: auto;
+    }
+
+}

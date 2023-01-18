@@ -10,7 +10,6 @@ const Feedback = () => {
     const [message, setMessage] = useState("");
 
     const handleSubmit = async (e) => {
-        console.log("clicked")
         e.preventDefault();
 
         if (feedback.content.length < 0) return setMessage("Seems like your comment is blank.");
@@ -33,7 +32,7 @@ const Feedback = () => {
 
 
     return (
-        <section class="sectionWrapper">
+        <section className="sectionWrapper">
             <Link to="/">Home</Link>
             <h1>Feedback</h1>
             <p>Your feedback can help improve the app's design to fit your needs.</p>

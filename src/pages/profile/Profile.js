@@ -27,6 +27,7 @@ function Profile() {
 
     const [theme, setTheme] = useState("light");
     const [paginatedPosts, setPaginatedPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [userInfo, setUserInfo] = useState({
         id: 0,
         username: "",
@@ -61,6 +62,9 @@ function Profile() {
 
     //Fetch posts on page load.
     useEffect(() => {
+
+        setLoading(true);
+
         getUser();
         getPosts(1);
     }, []);
@@ -69,16 +73,20 @@ function Profile() {
     const handleChangeTheme = (themeChosen) => {
         setPaginatedPosts([]);
         setTheme(themeChosen);
-        setPost((prevData)=>({...prevData, postTheme: themeChosen}));
+        setPost((prevData) => ({ ...prevData, postTheme: themeChosen }));
     }
 
     const getUser = async () => {
         const controller = new AbortController();
         try {
 
-            const response = await axiosPrivate.get(`/users/${id}`,{
+            const response = await axiosPrivate.get(`/users/${id}`, {
                 signal: controller.signal
             });
+
+            if (response) {
+                setLoading(false);
+            }
 
             controller.abort();
 
@@ -91,11 +99,19 @@ function Profile() {
                 bannerImageShadow: response?.data?.bannerImageShadow
             });
 
-        } catch (e) {
+        } catch (err) {
 
-            console.log("error", e);
+            // if (!err?.response) {
+            //     setErrMsg('No Server Response');
+            // } else if (err.response?.status === 400) {
+            //     setErrMsg('Missing Username or Password');
+            // } else if (err.response?.status === 401) {
+            //     setErrMsg('Unauthorized');
+            // } else {
+            //     setErrMsg('Login Failed');
+            // }
         }
-        
+
     }
 
     const getPosts = async (nextPage) => {
@@ -154,13 +170,27 @@ function Profile() {
         }
 
     }
-    
+
     return (
         <div id="profileWrapper">
-            <NavBar theme={theme} handleChangeTheme={handleChangeTheme} />
-            <Banner theme={theme} userInfo={userInfo}/>
-            <UserCard theme={theme} userInfo={userInfo} numberOfPosts={page.total} />
-            <MainCard theme={theme} userInfo={userInfo} paginatedPosts={paginatedPosts.flat()} setPaginatedPosts={setPaginatedPosts} setPost={setPost} post={post} handleSubmit={handleSubmit} message={message} page={page} getPosts={getPosts} />
+            {
+                loading
+                    ? <p style={{ position: "absolute", top: "0" }}>Loading...</p>
+                    : (
+                        <>
+                            <div className="flexCenter">
+                                <NavBar theme={theme} handleChangeTheme={handleChangeTheme} />
+
+                            </div>
+                            <Banner theme={theme} userInfo={userInfo} />
+                            <UserCard theme={theme} userInfo={userInfo} numberOfPosts={page.total} />
+                            <div className="flexCenter">
+                                <MainCard theme={theme} userInfo={userInfo} paginatedPosts={paginatedPosts.flat()} setPaginatedPosts={setPaginatedPosts} setPost={setPost} post={post} handleSubmit={handleSubmit} message={message} page={page} getPosts={getPosts} />
+                            </div>
+                        </>
+                    )
+            }
+
         </div>
     )
 

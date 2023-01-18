@@ -157,7 +157,7 @@ const Register = () => {
                             Must match the first password input field.
                         </p>
 
-                        <label htmlFor="horoscopeSign">Horoscope:</label>
+                        <label htmlFor="horoscopeSign">Zodiac:</label>
                         <Select value={horoscopeSign} setHoroscopeSign={setHoroscopeSign} />
 
                         <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>

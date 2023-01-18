@@ -18,6 +18,7 @@ function PublicProfile(props) {
 
     });
     const [theme, setTheme] = useState("light");
+    const [loading, setLoading] = useState(false);
     const [paginatedPosts, setPaginatedPosts] = useState([]);
 
     //State variable for the pagination results
@@ -36,6 +37,7 @@ function PublicProfile(props) {
         // const url = window.location.pathname
         // const urlSplit = url.split("/");
         // setUserId(urlSplit[2])
+        setLoading(true);
         getUser();
         getPosts(1);
         console.log("user", userInfo)
@@ -80,6 +82,10 @@ function PublicProfile(props) {
                 signal: controller.signal
             });
 
+            if(response){
+                setLoading(false);
+            }
+
             console.log('response in pubic', response.data)
 
             setUserInfo({
@@ -105,10 +111,17 @@ function PublicProfile(props) {
 
     return (
         <div id="profileWrapper">
+            <div className="flexCenter">
             <NavBar theme={theme} handleChangeTheme={handleChangeTheme} />
+            </div>
+
             <Banner userInfo={userInfo} theme={theme} setTheme={setTheme} handleChangeTheme={handleChangeTheme} />
             <PublicUserCard theme={theme} userInfo={userInfo} numberOfPosts={page.total} />
+            <div className="flexCenter">
+
             <PublicMainCard theme={theme} user={userInfo} paginatedPosts={paginatedPosts.flat()} setPaginatedPosts={setPaginatedPosts} page={page} getPosts={getPosts} />
+            </div>
+            
         </div>
     )
 

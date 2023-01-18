@@ -1,5 +1,6 @@
 #navBarWrapper {
     width: 100%;
+    max-width: 600px;
     height: 70px;
     background-color: black;
     display: flex;

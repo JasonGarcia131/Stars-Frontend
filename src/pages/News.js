@@ -8,7 +8,7 @@ const News = () => {
             <br/>
             <h1>Upcoming Features: </h1>
             <br/>
-            <p>Search friends by horoscope sign.</p>
+            <p>Search friends by zodiac sign.</p>
             <br/>
             <p>Private Messaging.</p>
                     

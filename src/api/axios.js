@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'https://stars-api.onrender.com';
+const BASE_URL = 'https://socialstars-api.onrender.com';
 
 export default axios.create({
     baseURL: BASE_URL

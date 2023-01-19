@@ -32,7 +32,7 @@ const Home = () => {
         <section>
             <h1>Home</h1>
             <br />
-            <Link to='/profile'>Profile</Link>
+            <Link to='/profile'>Edit Profile</Link>
             <br />
             <Link to="/news">New upcoming features</Link>
             <br />

@@ -1,5 +1,4 @@
-
- .postTextBoxWrapper {
+.postTextBoxWrapper {
     width: 100%;
     text-align: top;
     height: 50px;
@@ -10,7 +9,8 @@
 .textBoxContainer {
     text-align: left;
     max-width: 600px;
-    padding-bottom: 20px ;
+    padding-bottom: 20px;
+
 }
 
 .postTextBoxWrapper::placeholder {
@@ -23,15 +23,18 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-} 
+}
 
+.textBoxControls > label:active {
+    background-color: black;
+}
 
 @media screen and (min-width: 500px) {
-    .postTextBoxWrapper{
+    .postTextBoxWrapper {
         height: 100px;
     }
 
-    .textBoxContainer{
+    .textBoxContainer {
         margin: 0 auto;
     }
 }

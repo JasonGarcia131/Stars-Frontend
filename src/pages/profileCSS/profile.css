@@ -37,14 +37,6 @@ label{
     padding: 3px;
 }
 
-label:active{
-    background-color: darkgray;
-}
-
-label:hover{
-    background-color: darkgray;
-}
-
 .flexCenter{
     width: 100%;
     display: flex;

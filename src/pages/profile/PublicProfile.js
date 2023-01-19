@@ -7,9 +7,11 @@ import PublicUserCard from "./PublicUserCard";
 import PublicMainCard from "./PublicMainCard";
 
 const LIMIT = 10;
-function PublicProfile(props) {
+function PublicProfile() {
 
-    const [userId, setUserId] = useState(window.location.pathname.split("/")[2]);
+    const userId = window.location.pathname.split("/")[2];
+
+    const [errMsg, setErrMsg] = useState("");
     const [userInfo, setUserInfo] = useState({
         id: userId,
         username: "",
@@ -34,20 +36,13 @@ function PublicProfile(props) {
     });
 
     useEffect(() => {
-        // const url = window.location.pathname
-        // const urlSplit = url.split("/");
-        // setUserId(urlSplit[2])
-        setLoading(true);
         getUser();
-        getPosts(1);
-        console.log("user", userInfo)
-
+        getPosts(1);        
     }, [theme]);
 
     const handleChangeTheme = (themeChosen) => {
         setPaginatedPosts([]);
         setTheme(themeChosen);
-        // setPost((prevData)=>({...prevData, postTheme: themeChosen}))
     }
 
     const getPosts = async (nextPage) => {
@@ -69,8 +64,12 @@ function PublicProfile(props) {
             setPaginatedPosts([...paginatedPosts, response?.data?.results]);
 
         } catch (e) {
-
-            console.log("error", e);
+            if (!e?.response) {
+                setErrMsg("No Server Response");
+            } 
+            else if (e.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            } 
         }
     }
 
@@ -82,11 +81,9 @@ function PublicProfile(props) {
                 signal: controller.signal
             });
 
-            if(response){
+            if (response) {
                 setLoading(false);
             }
-
-            console.log('response in pubic', response.data)
 
             setUserInfo({
                 id: response?.data?._id,
@@ -98,30 +95,28 @@ function PublicProfile(props) {
             setPaginatedPosts([...paginatedPosts, response.data]);
             controller.abort();
 
-            // await getPosts(1);
-
-
-
         } catch (e) {
-            console.log(e)
+            if (!e?.response) {
+                setErrMsg("No Server Response");
+            } 
+            else if (e.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            } 
         }
     }
-
-    console.log("user info", userInfo);
 
     return (
         <div id="profileWrapper">
             <div className="flexCenter">
-            <NavBar theme={theme} handleChangeTheme={handleChangeTheme} />
+                <NavBar theme={theme} handleChangeTheme={handleChangeTheme} />
             </div>
-
             <Banner userInfo={userInfo} theme={theme} setTheme={setTheme} handleChangeTheme={handleChangeTheme} />
             <PublicUserCard theme={theme} userInfo={userInfo} numberOfPosts={page.total} />
             <div className="flexCenter">
 
-            <PublicMainCard theme={theme} user={userInfo} paginatedPosts={paginatedPosts.flat()} setPaginatedPosts={setPaginatedPosts} page={page} getPosts={getPosts} />
+                <PublicMainCard theme={theme} user={userInfo} paginatedPosts={paginatedPosts.flat()} setPaginatedPosts={setPaginatedPosts} page={page} getPosts={getPosts} />
             </div>
-            
+
         </div>
     )
 

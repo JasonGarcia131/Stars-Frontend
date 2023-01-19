@@ -81,11 +81,6 @@
 
 @media screen and (min-width: 500px) {
 
-    /* #postProfilePicture {
-        height: 80%;
-        max-height: 100px;
-    } */
-
     #postProfilePicture {
         width: 30%;
         height: 100px;

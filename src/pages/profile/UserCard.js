@@ -16,8 +16,8 @@ function UserCard(props) {
     });
 
     const handleSubmitBio = async () => {
-        console.log("userBio", userBio)
         const response = await axiosPrivate.put(`/users/${id}`, userBio);
+        if(!response) setMessage("No server response");
         if (response.status === 200) {
             window.location.reload();
         } else {

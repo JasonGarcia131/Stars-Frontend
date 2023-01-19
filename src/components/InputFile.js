@@ -42,7 +42,6 @@ const InputFile = (props) => {
     }
 
     const handleSubmit = async () => {
-        console.log("image", image)
         const response = await axiosPrivate.put(`/users/${userId}`, image);
         if (response.status === 200) {
             window.location.reload();

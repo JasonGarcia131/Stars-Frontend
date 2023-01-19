@@ -26,6 +26,7 @@ function Profile() {
     const id = user?.userId;
 
     const [theme, setTheme] = useState("light");
+    const [errMsg, setErrMsg] = useState("");
     const [paginatedPosts, setPaginatedPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [userInfo, setUserInfo] = useState({
@@ -62,9 +63,7 @@ function Profile() {
 
     //Fetch posts on page load.
     useEffect(() => {
-
         setLoading(true);
-
         getUser();
         getPosts(1);
     }, []);
@@ -99,17 +98,16 @@ function Profile() {
                 bannerImageShadow: response?.data?.bannerImageShadow
             });
 
-        } catch (err) {
+        } catch (e) {
 
-            // if (!err?.response) {
-            //     setErrMsg('No Server Response');
-            // } else if (err.response?.status === 400) {
-            //     setErrMsg('Missing Username or Password');
-            // } else if (err.response?.status === 401) {
-            //     setErrMsg('Unauthorized');
-            // } else {
-            //     setErrMsg('Login Failed');
-            // }
+            if (!e?.response) {
+                setErrMsg("No Server Response");
+            } 
+            else if (e.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            } else {
+                setErrMsg('Login Failed');
+            }
         }
 
     }
@@ -132,8 +130,14 @@ function Profile() {
             setPaginatedPosts([...paginatedPosts, response?.data?.results]);
 
         } catch (e) {
-
-            console.log("error", e);
+            if (!e?.response) {
+                setErrMsg("No Server Response");
+            } 
+            else if (e.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            } else {
+                setErrMsg('Login Failed');
+            }
         }
     }
 
@@ -161,12 +165,17 @@ function Profile() {
                 content: "",
                 isPrivate: false
             })
-            setMessage("Entry recored");
 
-            window.location.reload();
+            setMessage("Entry recored");
+            // window.location.reload();
 
         } catch (e) {
-            console.log("error", e);
+            if (!e?.response) {
+                setErrMsg("No Server Response");
+            } 
+            else if (e.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            } 
         }
 
     }

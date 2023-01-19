@@ -12,6 +12,7 @@ function MainCard(props) {
     const axiosPrivate = useAxiosPrivate();
 
     const [editMode, setEditMode] = useState(false);
+    const [errMsg, setErrMsg] = useState("");
 
     const { theme, userInfo, paginatedPosts, setPost, post, message, page, getPosts, setPaginatedPosts, handleSubmit } = props;
 
@@ -24,13 +25,17 @@ function MainCard(props) {
 
         try {
             const response = await axiosPrivate.delete(`/posts/${id}`);
-            console.log("response", response)
             if (response.status === 200) {
-                const filteredPost = paginatedPosts.flat().filter(post => post._id != response.data._id);
+                const filteredPost = paginatedPosts.flat().filter(post => post._id !== response.data._id);
                 setPaginatedPosts(filteredPost);
             }
         } catch (e) {
-            console.log("error", e);
+            if (!e?.response) {
+                setErrMsg("No Server Response");
+            }
+            else if (e.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            }
         }
     }
 

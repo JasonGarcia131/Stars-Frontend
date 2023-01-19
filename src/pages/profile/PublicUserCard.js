@@ -1,13 +1,10 @@
 import "../profileCSS/usercard.css";
-import React, { useState } from "react";
+import React from "react";
 
 function PublicUserCard(props) {
 
-    const [message, setMessage] = useState("");
-    const [totalPosts, setTotalPosts] = useState(0);
-
     const { theme, userInfo, numberOfPosts } = props;
-    const { username, profilePicture, bio, id } = userInfo;
+    const { username, profilePicture, bio } = userInfo;
 
     return (
         <aside id="userCardWrapper" className={theme === "light" ? "lightUserCard" : "shadowUserCard"}>

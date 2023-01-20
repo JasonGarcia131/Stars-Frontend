@@ -9,11 +9,10 @@ import PublicMainCard from "./PublicMainCard";
 const LIMIT = 10;
 function PublicProfile() {
 
-    const userId = window.location.pathname.split("/")[2];
 
     const [errMsg, setErrMsg] = useState("");
     const [userInfo, setUserInfo] = useState({
-        id: userId,
+        id: 0,
         username: "",
         bio: "",
         profilePicture: "",
@@ -37,10 +36,13 @@ function PublicProfile() {
     });
 
     useEffect(() => {
+
+        const userId = window.location.pathname.split("/")[2];
+        setUserInfo((prevData) => ({ ...prevData, id: userId }));
         setLoading(true);
         getUser();
         getPosts(1);
-        
+
     }, [theme]);
 
     const handleChangeTheme = (themeChosen) => {
@@ -69,10 +71,10 @@ function PublicProfile() {
         } catch (e) {
             if (!e?.response) {
                 setErrMsg("No Server Response");
-            } 
+            }
             else if (e.response?.status === 401) {
                 setErrMsg('Unauthorized');
-            } 
+            }
         }
     }
 
@@ -80,7 +82,7 @@ function PublicProfile() {
         const controller = new AbortController();
 
         try {
-            const response = await axios.get(`/users/${userId}`, {
+            const response = await axios.get(`/users/${userInfo.id}`, {
                 signal: controller.signal
             });
 
@@ -102,10 +104,10 @@ function PublicProfile() {
         } catch (e) {
             if (!e?.response) {
                 setErrMsg("No Server Response");
-            } 
+            }
             else if (e.response?.status === 401) {
                 setErrMsg('Unauthorized');
-            } 
+            }
         }
     }
 

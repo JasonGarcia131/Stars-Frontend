@@ -33,7 +33,7 @@ const Feedback = () => {
 
     return (
         <section className="sectionWrapper">
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
             <h1>Feedback</h1>
             <p>Your feedback can help improve the app's design to fit your needs.</p>
             <input

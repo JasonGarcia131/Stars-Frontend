@@ -20,6 +20,7 @@ function UserCard(props) {
         if(!response) setMessage("No server response");
         if (response.status === 200) {
             setUserInfo((prevData)=>({...prevData, bio: userBio.content}));
+            setUserBio({content: ""});
         } else {
             setMessage("Could not update!");
         }

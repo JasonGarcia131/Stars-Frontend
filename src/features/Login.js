@@ -100,7 +100,7 @@ const Login = () => {
                         onChange={togglePersist}
                         checked={persist}
                     />
-                    <label htmlFor="persist">Trust This Device</label>
+                    <label htmlFor="persist" className='trustDevice'>Trust This Device</label>
                 </div>
             </form>
             <p>

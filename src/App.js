@@ -28,7 +28,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
-        <Route path="users/:id" element={<PublicProfile />} />
+        <Route exact path="users/:id" element={<PublicProfile />} />
         <Route path="about" element={<About/>} />
 
 

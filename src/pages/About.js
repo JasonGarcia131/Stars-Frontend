@@ -10,7 +10,7 @@ const About = () => {
             <br/>
             <p>You can select whether an entry is public to share with everyone or private for your own read.</p>
             <br/>
-            <p>The banner customizable banner allows you to upload an image that brings you inspiration or calmness.</p>
+            <p>The customizable banner allows you to upload an image that brings you inspiration or calmness.</p>
             <br/>
             <p>Switching between themes filters your thoughts any way you wish.</p>
         </section>

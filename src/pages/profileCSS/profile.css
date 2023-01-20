@@ -40,7 +40,7 @@ label{
     padding: 3px;
 }
 
-.inputLabel{
+#inputLabel{
     color: black;
     text-decoration: underline;
 }

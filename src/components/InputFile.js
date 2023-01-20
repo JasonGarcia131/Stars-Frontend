@@ -70,7 +70,7 @@ const InputFile = (props) => {
 
     return (
         <div>
-            <label htmlFor={id}>{label}</label>
+            <label htmlFor={id} id="inputLabel">{label}</label>
             {message}
             <input
                 type="file"

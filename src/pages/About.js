@@ -1,9 +1,15 @@
+import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 
 const About = () => {
+
+    const {auth} = useAuth();
+
+    const link = auth?.accessToken ? "/home" : "/";
+
     return (
         <section className="sectionWrapper">
-            <Link to="/home">back</Link>
+            <Link to={link}>back</Link>
             <h1>About Stars</h1>
             <br />
             <p>Stars is a digital journal that gives you the space to journal your greatest achievements or express your vulnerable emotions.</p>

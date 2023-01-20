@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import Register from './features/Register';
 import Login from './features/Login';
 import Home from './pages/Home';
@@ -8,7 +9,6 @@ import LinkPage from './pages/LinkPage';
 import RequireAuth from './components/RequireAuth';
 import PersistLogin from './components/PersistLogin';
 import Profile from './pages/profile/Profile';
-import { Routes, Route } from 'react-router-dom';
 import PublicProfile from './pages/profile/PublicProfile';
 import News from './pages/News';
 import Feedback from "./pages/Feedback"

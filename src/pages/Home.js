@@ -1,4 +1,4 @@
-import { useNavigate, Link, useSearchParams } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import useAuth from "../hooks/useAuth";
 import jwt_decode from "jwt-decode";
@@ -41,7 +41,7 @@ const Home = () => {
             <Link to='/about'>About Stars</Link>
             <br />
             <CopyToClipboard
-                text={`localhost:3000/users/${id}`}
+                text={`https://socialstars.onrender.com/users/${id}`}
                 onCopy={() => setCopied(true)}
             >
                 <div>

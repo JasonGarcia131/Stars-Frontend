@@ -3,7 +3,9 @@ import "../profileCSS/posttextbox.css";
 
 function PostTextBox(props) {
 
-    const { setPost, handleSubmit, post } = props;
+    const { setPost, handleSubmit, theme, post } = props;
+
+    const buttonText = theme === "light" ? "Manifest" : "Release";
 
     useEffect(() => { }, [post])
 
@@ -19,7 +21,7 @@ function PostTextBox(props) {
                 onChange={(e) => setPost((prevData) => ({ ...prevData, content: e.target.value }))}
             />
             <div className="textBoxControls">
-                <button onClick={handleSubmit}>Manifest</button>
+                <button onClick={handleSubmit}>{buttonText}</button>
                 <label htmlFor="isPrivate">Private</label>
                 <input
                     type="radio"

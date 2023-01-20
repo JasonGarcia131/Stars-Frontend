@@ -16,7 +16,8 @@ function PublicProfile() {
         id: userId,
         username: "",
         bio: "",
-        profilePicture: ""
+        profilePicture: "",
+        isPublic: true
 
     });
     const [theme, setTheme] = useState("light");
@@ -36,8 +37,10 @@ function PublicProfile() {
     });
 
     useEffect(() => {
+        setLoading(true);
         getUser();
-        getPosts(1);        
+        getPosts(1);
+        
     }, [theme]);
 
     const handleChangeTheme = (themeChosen) => {
@@ -89,7 +92,8 @@ function PublicProfile() {
                 id: response?.data?._id,
                 username: response?.data?.username,
                 bio: response?.data?.bio,
-                profilePicture: response?.data?.profilePicture
+                profilePicture: response?.data?.profilePicture,
+                isPublic: true
             })
 
             setPaginatedPosts([...paginatedPosts, response.data]);
@@ -113,7 +117,6 @@ function PublicProfile() {
             <Banner userInfo={userInfo} theme={theme} setTheme={setTheme} handleChangeTheme={handleChangeTheme} />
             <PublicUserCard theme={theme} userInfo={userInfo} numberOfPosts={page.total} />
             <div className="flexCenter">
-
                 <PublicMainCard theme={theme} user={userInfo} paginatedPosts={paginatedPosts.flat()} setPaginatedPosts={setPaginatedPosts} page={page} getPosts={getPosts} />
             </div>
 

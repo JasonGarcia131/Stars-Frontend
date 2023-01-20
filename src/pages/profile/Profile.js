@@ -102,7 +102,7 @@ function Profile() {
 
             if (!e?.response) {
                 setErrMsg("No Server Response");
-            } 
+            }
             else if (e.response?.status === 401) {
                 setErrMsg('Unauthorized');
             } else {
@@ -132,7 +132,7 @@ function Profile() {
         } catch (e) {
             if (!e?.response) {
                 setErrMsg("No Server Response");
-            } 
+            }
             else if (e.response?.status === 401) {
                 setErrMsg('Unauthorized');
             } else {
@@ -165,17 +165,14 @@ function Profile() {
                 content: "",
                 isPrivate: false
             })
-
             setMessage("Entry recored");
-            // window.location.reload();
-
         } catch (e) {
             if (!e?.response) {
                 setErrMsg("No Server Response");
-            } 
+            }
             else if (e.response?.status === 401) {
                 setErrMsg('Unauthorized');
-            } 
+            }
         }
 
     }
@@ -189,10 +186,9 @@ function Profile() {
                         <>
                             <div className="flexCenter">
                                 <NavBar theme={theme} handleChangeTheme={handleChangeTheme} />
-
                             </div>
-                            <Banner theme={theme} userInfo={userInfo} />
-                            <UserCard theme={theme} userInfo={userInfo} numberOfPosts={page.total} />
+                            <Banner theme={theme} userInfo={userInfo} setUserInfo={setUserInfo} />
+                            <UserCard theme={theme} userInfo={userInfo} setUserInfo={setUserInfo} numberOfPosts={page.total} />
                             <div className="flexCenter">
                                 <MainCard theme={theme} userInfo={userInfo} paginatedPosts={paginatedPosts.flat()} setPaginatedPosts={setPaginatedPosts} setPost={setPost} post={post} handleSubmit={handleSubmit} message={message} page={page} getPosts={getPosts} />
                             </div>

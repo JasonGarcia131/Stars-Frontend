@@ -1,22 +1,34 @@
 import "../profileCSS/banner.css";
-import React from "react";
+import React, { useEffect } from "react";
 import InputFile from "../../components/InputFile";
 
 function Banner(props) {
 
-    const { theme, userInfo } = props;
+    const { theme, userInfo, setUserInfo } = props;
+
 
     const bannerImageLight = userInfo.bannerImageLight;
     const bannerImageShadow = userInfo.bannerImageShadow;
 
+
     //Sets the background image for the banner component.
-    const style = theme === "light" ? `url(${bannerImageLight})` : `url(${bannerImageShadow})`;
+    const bannerImage = theme === "light" ? bannerImageLight : bannerImageShadow;
     return (
-        <header id="banner" style={{ backgroundImage: style }}>
-            <div id="editBanner">
-                <InputFile id="editBannerPicture" label="Edit Banner" userId={userInfo.id} theme={theme} imageKey="image" />
-            </div>
-        </header>
+        userInfo?.isPublic
+            ? (
+                <header id="banner">
+                    <img src={bannerImage} id="bannerImage" alt="banner image" />
+                </header >
+            )
+            : (
+                <header id="banner">
+                    <img src={bannerImage} id="bannerImage" alt="banner image" />
+                    <div id="editBanner">
+                        <InputFile id="editBannerPicture" label="Edit Banner" userId={userInfo.id} setUserInfo={setUserInfo} theme={theme} imageKey="banner" />
+                    </div>
+                </header >
+            )
+
     )
 }
 

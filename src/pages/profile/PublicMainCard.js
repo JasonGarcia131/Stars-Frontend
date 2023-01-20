@@ -26,7 +26,6 @@ function PublicMainCard(props) {
                         <Post username={user.username} profilePicture={user.profilePicture} content={post.content}theme={post.theme} date={post.createdAt} />
                     </div>
                 ))}
-                  
             </InfiniteScroll>
             </div>
         </div>

@@ -9,14 +9,18 @@
     text-align: center;
     margin: 0 auto;
     border-radius: 50%;
+    z-index: 2;
+
 }
 
 .profilePicture {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    border: 1px solid black;
+    border: 3px solid black;
     border-radius: 50%;
+    box-shadow: 0 0 3px #ccc;
+
 }
 
 article {
@@ -25,6 +29,7 @@ article {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow-x: hidden;
     margin-top: 30px;
     background-position: 50%;
     background-size: cover;
@@ -32,8 +37,8 @@ article {
 }
 
 label{
-    background-color: black;
-    color: white;
+    color: black;
+    text-decoration: underline;
     padding: 3px;
 }
 

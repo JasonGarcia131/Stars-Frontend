@@ -6,9 +6,9 @@ import { AuthProvider } from './context/AuthProvider';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {disableReactDevTools} from "@fvilers/disable-react-devtools"
 
-// if(process.env.NODE_ENV === 'production'){
-//   disableReactDevTools();
-// }
+if(process.env.NODE_ENV === 'production'){
+  disableReactDevTools();
+}
 
 const root = createRoot(document.getElementById("root"));
 

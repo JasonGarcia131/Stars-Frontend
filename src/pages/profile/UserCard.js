@@ -7,7 +7,7 @@ function UserCard(props) {
 
     const axiosPrivate = useAxiosPrivate();
 
-    const { theme, userInfo, numberOfPosts } = props;
+    const { theme, userInfo, setUserInfo, numberOfPosts } = props;
     const { username, profilePicture, bio, id } = userInfo;
 
     const [message, setMessage] = useState("");
@@ -19,7 +19,7 @@ function UserCard(props) {
         const response = await axiosPrivate.put(`/users/${id}`, userBio);
         if(!response) setMessage("No server response");
         if (response.status === 200) {
-            window.location.reload();
+            setUserInfo((prevData)=>({...prevData, bio: userBio.content}));
         } else {
             setMessage("Could not update!");
         }
@@ -28,7 +28,7 @@ function UserCard(props) {
     return (
         <aside id="userCardWrapper" className={theme === "light" ? "lightUserCard" : "shadowUserCard"}>
             <div id="userCardProfilePictureWrapper" className="profilePictureWrapper">
-                <InputFile id="editProfilePicture" label="Edit Picture" imageKey="profilePicture" userId={id} />
+                <InputFile id="editProfilePicture" label="Edit Picture" imageKey="profilePicture" userId={id} setUserInfo={setUserInfo} />
                 <br/>
                 <img id="userCardProfilePicture" className="profilePicture" src={profilePicture} alt="avatar" />
             </div>

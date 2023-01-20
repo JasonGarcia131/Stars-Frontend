@@ -2,6 +2,7 @@ import "../profileCSS/maincard.css";
 import { useEffect } from "react";
 import { handleInfiniteScroll } from "../../components/handlePaginate";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PostTextBox from "./PostTextBox";
 import Post from "./Post";
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -10,6 +11,7 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 function MainCard(props) {
 
     const axiosPrivate = useAxiosPrivate();
+    const navigate = useNavigate("");
 
     const [editMode, setEditMode] = useState(false);
     const [errMsg, setErrMsg] = useState("");

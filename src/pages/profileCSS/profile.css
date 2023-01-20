@@ -37,13 +37,12 @@ article {
 }
 
 label{
-    color: black;
-    text-decoration: underline;
     padding: 3px;
 }
 
-.trustDevice{
-    color: white;
+.inputLabel{
+    color: black;
+    text-decoration: underline;
 }
 
 .flexCenter{

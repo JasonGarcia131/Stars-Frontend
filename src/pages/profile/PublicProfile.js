@@ -41,7 +41,7 @@ function PublicProfile() {
         setUserInfo((prevData) => ({ ...prevData, id: userId }));
         setLoading(true);
         getUser();
-        getPosts(1);
+        // getPosts(1);
 
     }, [theme]);
 
@@ -50,33 +50,33 @@ function PublicProfile() {
         setTheme(themeChosen);
     }
 
-    const getPosts = async (nextPage) => {
-        const controller = new AbortController();
-        try {
+    // const getPosts = async (nextPage) => {
+    //     const controller = new AbortController();
+    //     try {
 
-            const response = await axios.get(`/posts/paginate/public/?id=${userId}&page=${nextPage}&limit=${LIMIT}&theme=${theme}&public=true`, {
-                signal: controller.signal
-            });
+    //         const response = await axios.get(`/posts/paginate/public/?id=${userId}&page=${nextPage}&limit=${LIMIT}&theme=${theme}&public=true`, {
+    //             signal: controller.signal
+    //         });
 
-            controller.abort();
+    //         controller.abort();
 
-            setPage({
-                next: response?.data?.next,
-                previous: response?.data?.previous,
-                total: response?.data?.total
-            });
+    //         setPage({
+    //             next: response?.data?.next,
+    //             previous: response?.data?.previous,
+    //             total: response?.data?.total
+    //         });
 
-            setPaginatedPosts([...paginatedPosts, response?.data?.results]);
+    //         setPaginatedPosts([...paginatedPosts, response?.data?.results]);
 
-        } catch (e) {
-            if (!e?.response) {
-                setErrMsg("No Server Response");
-            }
-            else if (e.response?.status === 401) {
-                setErrMsg('Unauthorized');
-            }
-        }
-    }
+    //     } catch (e) {
+    //         if (!e?.response) {
+    //             setErrMsg("No Server Response");
+    //         }
+    //         else if (e.response?.status === 401) {
+    //             setErrMsg('Unauthorized');
+    //         }
+    //     }
+    // }
 
     const getUser = async () => {
         const controller = new AbortController();
@@ -118,9 +118,9 @@ function PublicProfile() {
             </div>
             <Banner userInfo={userInfo} theme={theme} setTheme={setTheme} handleChangeTheme={handleChangeTheme} />
             <PublicUserCard theme={theme} userInfo={userInfo} numberOfPosts={page.total} />
-            <div className="flexCenter">
+            {/* <div className="flexCenter">
                 <PublicMainCard theme={theme} user={userInfo} paginatedPosts={paginatedPosts.flat()} setPaginatedPosts={setPaginatedPosts} page={page} getPosts={getPosts} />
-            </div>
+            </div> */}
 
         </div>
     )

@@ -40,14 +40,14 @@ const Home = () => {
             <br />
             <Link to='/about'>About Stars</Link>
             <br />
-            <CopyToClipboard
+            {/* <CopyToClipboard
                 text={`https://socialstars.onrender.com/users/${id}`}
                 onCopy={() => setCopied(true)}
             >
                 <div>
                     <p>Share profile link</p><FaPaperclip />
                 </div>
-            </CopyToClipboard>
+            </CopyToClipboard> */}
             {copied ? <p>Copied!</p> : ""}
             <div className="flexGrow">
                 <button onClick={signOut}>Sign Out</button>

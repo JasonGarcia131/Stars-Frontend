@@ -24,9 +24,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* public routes */}
+        <Route exact path="/" element={<LinkPage />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="linkpage" element={<LinkPage />} />
         <Route path="unauthorized" element={<Unauthorized />} />
         <Route path="users/:id" element={<PublicProfile />} />
         <Route path="about" element={<About/>} />
@@ -36,7 +36,7 @@ function App() {
 
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
           </Route>
 
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>

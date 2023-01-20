@@ -10,7 +10,7 @@ function NavBar(props) {
 
     return (
         <nav id="navBarWrapper">
-            <button className={buttonStyle} ><Link to='/'><FaHome size="sm"/></Link></button>
+            <button className={buttonStyle} ><Link to='/'><FaHome/></Link></button>
             <button className={buttonStyle} onClick={()=> handleChangeTheme("light")}>Light</button>
             <button className={buttonStyle} onClick={() => handleChangeTheme("shadow")}>Shadow</button>
         </nav>

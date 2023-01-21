@@ -26,6 +26,7 @@ const Register = () => {
 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [horoscopeSign, setHoroscopeSign] = useState("");
 
@@ -47,6 +48,7 @@ const Register = () => {
     }, [user, pwd, matchPwd])
 
     const handleSubmit = async (e) => {
+        isLoading(true);
         e.preventDefault();
         // if button enabled with JS hack
         const v1 = USER_REGEX.test(user);
@@ -63,7 +65,8 @@ const Register = () => {
                     withCredentials: true
                 }
             );
-            
+
+            setIsLoading(false);
             setSuccess(true);
             //clear state and controlled inputs
             setUser('');
@@ -90,7 +93,9 @@ const Register = () => {
                         <Link to="/login">Sign In</Link>
                     </p>
                 </section>
-            ) : (
+            ) : isLoading ? (
+                    <p>Loading...</p>
+                ) : (
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Register</h1>

@@ -19,6 +19,7 @@ const Login = () => {
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
+    const [isLoading,setIsLoading] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
@@ -30,6 +31,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        isLoading(true);
 
         try {
             const response = await axios.post(LOGIN_URL,
@@ -39,6 +41,8 @@ const Login = () => {
                     withCredentials: true
                 }
             );
+
+            isLoading(false);
             const accessToken = response?.data?.accessToken;
 
             setAuth({accessToken});
@@ -68,7 +72,7 @@ const Login = () => {
     }, [persist])
 
     return (
-
+        isLoading ? (<p>Loading...</p>) : (
         <section>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
             <h1>Sign In</h1>
@@ -110,6 +114,7 @@ const Login = () => {
                 </span>
             </p>
         </section>
+    )
 
     )
 }

@@ -48,7 +48,7 @@ const Register = () => {
     }, [user, pwd, matchPwd])
 
     const handleSubmit = async (e) => {
-        isLoading(true);
+        setIsLoading(true);
         e.preventDefault();
         // if button enabled with JS hack
         const v1 = USER_REGEX.test(user);

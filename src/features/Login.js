@@ -31,7 +31,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        isLoading(true);
+        setIsLoading(true);
 
         try {
             const response = await axios.post(LOGIN_URL,
@@ -42,7 +42,7 @@ const Login = () => {
                 }
             );
 
-            isLoading(false);
+            setIsLoading(false);
             const accessToken = response?.data?.accessToken;
 
             setAuth({accessToken});

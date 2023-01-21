@@ -83,9 +83,7 @@ function Profile() {
                 signal: controller.signal
             });
 
-            if (response) {
                 setLoading(false);
-            }
 
             controller.abort();
 

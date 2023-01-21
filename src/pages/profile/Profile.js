@@ -7,6 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import jwt_decode from "jwt-decode";
 import NavBar from "./NavBar";
+import Loading from "../../components/Loading";
 
 const LIMIT = 10;
 function Profile() {
@@ -179,7 +180,7 @@ function Profile() {
         <div id="profileWrapper">
             {
                 loading
-                    ? <p style={{ position: "absolute", top: "0" }}>Loading...</p>
+                    ? <Loading/>
                     : (
                         <>
                             <div className="flexCenter">

@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 import Select from "../components/Select";
 import axios from '../api/axios';
 
@@ -94,7 +95,7 @@ const Register = () => {
                     </p>
                 </section>
             ) : isLoading ? (
-                    <p>Loading...</p>
+                    <Loading/>
                 ) : (
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>

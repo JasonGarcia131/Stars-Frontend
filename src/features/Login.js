@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Loading from '../components/Loading';
 import useAuth from '../hooks/useAuth';
 
 
@@ -72,7 +73,7 @@ const Login = () => {
     }, [persist])
 
     return (
-        isLoading ? (<p>Loading...</p>) : (
+        isLoading ? (<Loading/>) : (
         <section>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
             <h1>Sign In</h1>

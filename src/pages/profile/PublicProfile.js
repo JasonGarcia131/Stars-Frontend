@@ -9,13 +9,14 @@ import PublicMainCard from "./PublicMainCard";
 const LIMIT = 10;
 function PublicProfile() {
 
-    const [userId, setUserId] = useState(window.location.pathname.split("/")[2]);
+    const userId = window.location.pathname.split("/")[4];
     const [isLoading, setIsLoading] = useState(false);
     const [userInfo, setUserInfo] = useState({
-        id: userId,
+        id: 0,
         username: "",
         bio: "",
-        profilePicture: ""
+        profilePicture: "",
+        isPublic: true
 
     });
     const [theme, setTheme] = useState("light");
@@ -48,7 +49,7 @@ function PublicProfile() {
         const controller = new AbortController();
         try {
 
-            const response = await axios.get(`/posts/paginate/public/?id=${userId}&page=${nextPage}&limit=${LIMIT}&theme=${theme}&public=true`, {
+            const response = await axios.get(`/posts/paginate/public/?id=${userInfo?.id}&page=${nextPage}&limit=${LIMIT}&theme=${theme}&public=true`, {
                 signal: controller.signal
             });
 
@@ -81,7 +82,9 @@ function PublicProfile() {
                 id: response?.data?._id,
                 username: response?.data?.username,
                 bio: response?.data?.bio,
-                profilePicture: response?.data?.profilePicture
+                profilePicture: response?.data?.profilePicture,
+                bannerImageLight: response?.data?.bannerImageLight,
+                bannerImageShadow: response?.data?.bannerImageShadow
             })
 
             setPaginatedPosts([...paginatedPosts, response.data]);
@@ -94,12 +97,16 @@ function PublicProfile() {
 
     return (
         isLoading ? <Loading /> : (
-            <div id="profileWrapper">
-                <NavBar theme={theme} handleChangeTheme={handleChangeTheme} />
+            <>
+                <div className="flexCenter">
+                    <NavBar theme={theme} handleChangeTheme={handleChangeTheme} />
+                </div>
                 <Banner userInfo={userInfo} theme={theme} setTheme={setTheme} handleChangeTheme={handleChangeTheme} />
                 <PublicUserCard theme={theme} userInfo={userInfo} numberOfPosts={page.total} />
-                <PublicMainCard theme={theme} user={userInfo} paginatedPosts={paginatedPosts.flat()} setPaginatedPosts={setPaginatedPosts} page={page} getPosts={getPosts} />
-            </div>
+                <div className="flexCenter">
+                    <PublicMainCard theme={theme} user={userInfo} paginatedPosts={paginatedPosts.flat()} setPaginatedPosts={setPaginatedPosts} page={page} getPosts={getPosts} />
+                </div>
+            </>
         )
     )
 

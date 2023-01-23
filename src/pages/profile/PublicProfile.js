@@ -10,7 +10,7 @@ import Loading from "../../components/Loading";
 const LIMIT = 10;
 function PublicProfile() {
 
-    const [userId, setUserId] = useState(window.location.pathname.split("/")[4]);
+    const [userId, setUserId] = useState(window.location.pathname.split("/")[2]);
     const [isLoading, setIsLoading] = useState(false);
     const [userInfo, setUserInfo] = useState({
         id: userId,

@@ -9,10 +9,10 @@ import PublicMainCard from "./PublicMainCard";
 const LIMIT = 10;
 function PublicProfile() {
 
-    const userId = window.location.pathname.split("/")[4];
+    const [userId, setUserId] = useState(window.location.pathname.split("/")[4]);
     const [isLoading, setIsLoading] = useState(false);
     const [userInfo, setUserInfo] = useState({
-        id: 0,
+        id: userId,
         username: "",
         bio: "",
         profilePicture: "",
@@ -49,7 +49,7 @@ function PublicProfile() {
         const controller = new AbortController();
         try {
 
-            const response = await axios.get(`/posts/paginate/public/?id=${userInfo?.id}&page=${nextPage}&limit=${LIMIT}&theme=${theme}&public=true`, {
+            const response = await axios.get(`/posts/paginate/public/?id=${userId}&page=${nextPage}&limit=${LIMIT}&theme=${theme}&public=true`, {
                 signal: controller.signal
             });
 

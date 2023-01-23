@@ -5,6 +5,7 @@ import axios from "../../api/axios";
 import NavBar from "./NavBar";
 import PublicUserCard from "./PublicUserCard";
 import PublicMainCard from "./PublicMainCard";
+import Loading from "../../components/Loading";
 
 const LIMIT = 10;
 function PublicProfile() {

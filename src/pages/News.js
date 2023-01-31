@@ -4,7 +4,7 @@ const News = () => {
 
     return (
         <section className="sectionWrapper">
-            <Link to="/linkpage">Home</Link>
+            <Link to="/home">Home</Link>
             <br/>
             <h1>Upcoming Features: </h1>
             <br/>

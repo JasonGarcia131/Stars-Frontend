@@ -20,7 +20,9 @@ function Post(props) {
                 <h3 id="postUsername">{username}</h3>
                 <p id="postDate">{dateOfPost}</p>
             </div>
-            <p>{content}</p>
+            <div id="contentWrapper">
+                <p>{content}</p>
+            </div>
         </article>
     )
 }

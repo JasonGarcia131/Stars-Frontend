@@ -28,15 +28,16 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
-        <Route exact path="users/:id" element={<PublicProfile />} />
+        <Route path="users/:id" element={<PublicProfile />} />
         <Route path="about" element={<About/>} />
 
 
         {/* we want to protect these routes */}
 
         <Route element={<PersistLogin />}>
+
           <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
-            <Route path="/home" element={<Home />} />
+            <Route path="home" element={<Home />} />
           </Route>
 
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>

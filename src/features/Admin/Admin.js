@@ -6,7 +6,7 @@ const Admin = () => {
             <h1>Admins Page</h1>
             <br />
             <div>
-                <Link to="/">Home</Link>
+                <Link to="/home">Home</Link>
                 <br/>
                 <Link to="/getfeedback">Feedback</Link>
             </div>

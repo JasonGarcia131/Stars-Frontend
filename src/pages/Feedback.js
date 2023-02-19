@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { axiosPrivate } from "../api/axios";
 import { Link } from "react-router-dom";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const Feedback = () => {
 
@@ -8,6 +8,8 @@ const Feedback = () => {
         content: ""
     });
     const [message, setMessage] = useState("");
+
+    const axiosPrivate = useAxiosPrivate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,8 +34,8 @@ const Feedback = () => {
 
 
     return (
-        <section className="sectionWrapper">
-            <Link to="/home">Home</Link>
+        <section class="sectionWrapper">
+            <Link to="/">Home</Link>
             <h1>Feedback</h1>
             <p>Your feedback can help improve the app's design to fit your needs.</p>
             <input

@@ -13,9 +13,12 @@ import PublicProfile from './pages/profile/PublicProfile';
 import News from './pages/News';
 import Feedback from "./pages/Feedback"
 import About from "./pages/About";
+import GetFeedBack from './features/Admin/GetFeedBack';
+import Admin from './features/Admin/Admin';
 
 const ROLES = {
-  'User': 2001
+  'User': 2001,
+  'Admin': 1994
 }
 
 function App() {
@@ -24,17 +27,21 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* public routes */}
-        <Route exact path="/" element={<LinkPage />} />
+        <Route path="/" element={<LinkPage />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
         <Route path="users/:id" element={<PublicProfile />} />
-        <Route path="about" element={<About/>} />
-
+        <Route path="about" element={<About />} />
 
         {/* we want to protect these routes */}
 
         <Route element={<PersistLogin />}>
+
+          <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+            <Route path="/admin" element={<Admin />} />
+            <Route path="getfeedback" element={<GetFeedBack />} />
+          </Route>
 
           <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}>
             <Route path="home" element={<Home />} />
@@ -42,13 +49,7 @@ function App() {
 
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
             <Route path="profile" element={<Profile />} />
-          </Route>
-
-          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
             <Route path="news" element={<News />} />
-          </Route>
-
-          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
             <Route path="feedback" element={<Feedback />} />
           </Route>
 

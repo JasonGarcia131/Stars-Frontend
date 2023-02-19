@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import useAuth from "../hooks/useAuth";
 import jwt_decode from "jwt-decode";
@@ -27,10 +27,13 @@ const Home = () => {
 
     const user = decode?.UserInfo;
     const id = user?.userId;
-
+    const role = user?.roles;
+    
     return (
         <section>
             <h1>Home</h1>
+            <br />
+            {role?.includes(1994) ? <Link to='/admin'>Admin's Home</Link> : ""}
             <br />
             <Link to='/profile'>Profile</Link>
             <br />
@@ -40,15 +43,15 @@ const Home = () => {
             <br />
             <Link to='/about'>About Stars</Link>
             <br />
-            <CopyToClipboard
-                text={`https://socialstars.onrender.com/users/${id}`}
+            {/* <CopyToClipboard
+                text={`localhost:3000/users/${id}`}
                 onCopy={() => setCopied(true)}
             >
                 <div>
                     <p>Share profile link</p><FaPaperclip />
                 </div>
             </CopyToClipboard>
-            {copied ? <p>Copied!</p> : ""}
+            {copied ? <p>Copied!</p> : ""} */}
             <div className="flexGrow">
                 <button onClick={signOut}>Sign Out</button>
             </div>

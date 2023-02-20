@@ -20,7 +20,6 @@ const GetFeedBack = () => {
                     signal: controller.signal
                 });
                 const feedbacks = response.data.map(feedback => feedback.content);
-                console.log(response.data);
                 isMounted && setFeedback(feedbacks);
             } catch (err) {
                 console.error(err);
@@ -41,7 +40,7 @@ const GetFeedBack = () => {
 
     return (
         <section className="adminHome">
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
             <h2>Feedback ({feedback?.length})</h2>
             <br/>
             {feedback?.length > 0 
